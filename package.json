@@ -21,5 +21,10 @@
   "scripts": {
     "test": "grunt test",
     "lint": "grunt jshint"
+  },
+  "dependencies": {
+    "cordova-common": "^1.5.1",
+    "elementtree": "^0.1.6",
+    "properties-parser": "^0.3.1"
   }
 }
