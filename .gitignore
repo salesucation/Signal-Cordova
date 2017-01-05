@@ -4,3 +4,21 @@ build/curve25519_compiled.js
 stylesheets/*.css.map
 dist
 .tx
+coverage
+npm-debug.log
+temp
+.DS_Store
+spec/fixtures/projects/native
+spec/fixtures/projects/cordova
+lib/cordova-android/framework/bin
+lib/cordova-android/framework/gen
+lib/cordova-android/framework/local.properties
+lib/cordova-wp7/example
+lib/cordova-wp8/example
+.idea/*
+spec/fixtures/*
+.gitcore
+*.jar
+spec_tmp
+# avoid npm pack issues
+.gitignore
