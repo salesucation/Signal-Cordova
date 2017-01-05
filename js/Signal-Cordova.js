@@ -16,7 +16,6 @@
     var view;
 
     function render() {
-        
         ConversationController.updateInbox().then(function() {
             try {
                 if (view) { view.remove(); }
@@ -30,7 +29,7 @@
                         }
                     };
                     openConversation(getOpenConversation());
-                }else{
+                }else {
                     view = new Whisper.PhoneInputView({window:window});
                     view.$el.prependTo($body);
                 }

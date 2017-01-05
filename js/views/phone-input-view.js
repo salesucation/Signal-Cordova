@@ -8,7 +8,7 @@
     Whisper.PhoneInputView = Whisper.View.extend({
         className: 'phone-input-form',
         templateName: 'phone-number',
-        initialize: function(options){
+        initialize: function(options) {
             this.render();
         },
 
@@ -17,7 +17,7 @@
             'keyup': 'validateNumber',
             'click .register': 'register'
         },
-        
+
         register: function() {
             alert("register clicked: " + this.validateNumber());
         },
@@ -28,10 +28,10 @@
            var number = input.val();
 
             var regionCode = libphonenumber.util.getRegionCodeForNumber(number);
-            
-            if(regionCode != null & regionCode != "ZZ"){
+
+            if (regionCode !== null & regionCode != "ZZ") {
                 this.$("div.country-code").html("Region code: " + regionCode);
-            }else if(regionCode != "ZZ"){
+            }else if (regionCode != "ZZ") {
                 this.$("div.country-code").html("&nbsp;");
             }
 

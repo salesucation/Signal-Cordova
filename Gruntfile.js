@@ -94,7 +94,7 @@ module.exports = function(grunt) {
         '!js/signal_protocol_store.js',
         '_locales/**/*'
       ],
-      options: { jshintrc: '.jshintrc' },
+      options: { jshintrc: '.jshintrc', reporterOutput: "" },
     },
     dist: {
       src: [
