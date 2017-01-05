@@ -6,24 +6,34 @@
     window.Whisper = window.Whisper || {};
 
     Whisper.PhoneInputView = Whisper.View.extend({
-        tagName: 'div',
-        className: 'phone-input',
+        className: 'phone-input-form',
         templateName: 'phone-number',
-        render: function() {
-            this.$el.html($(Mustache.render(this.template)));
-            this.$('input.number').intlTelInput();
-            return this;
+        initialize: function(options){
+            this.render();
         },
 
         events: {
             'change': 'validateNumber',
-            'keyup': 'validateNumber'
+            'keyup': 'validateNumber',
+            'click .register': 'register'
+        },
+        
+        register: function() {
+            alert("register clicked: " + this.validateNumber());
         },
 
         validateNumber: function() {
             var input = this.$('input.number');
-            var regionCode = this.$('li.active').attr('data-country-code').toUpperCase();
-            var number = input.val();
+            //var regionCode = this.$('li.active').attr('data-country-code').toUpperCase();
+           var number = input.val();
+
+            var regionCode = libphonenumber.util.getRegionCodeForNumber(number);
+            
+            if(regionCode != null & regionCode != "ZZ"){
+                this.$("div.country-code").html("Region code: " + regionCode);
+            }else if(regionCode != "ZZ"){
+                this.$("div.country-code").html("&nbsp;");
+            }
 
             var parsedNumber = libphonenumber.util.parseNumber(number, regionCode);
             if (parsedNumber.isValidNumber) {
