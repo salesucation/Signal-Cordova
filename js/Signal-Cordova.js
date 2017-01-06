@@ -42,8 +42,39 @@
 
     window.addEventListener('onreload', render);
     textsecure.startWorker('js/libsignal-protocol-worker.js');
+    storage.onready(function(){
+        render();
+        console.log('extension launched');
+    });
+    storage.fetch();
 
-    console.log('extension launched');
-    render();
+
+    var SERVER_URL = 'https://textsecure-service-staging.whispersystems.org';
+    var SERVER_PORTS = [80, 4433, 8443];
+    var ATTACHMENT_SERVER_URL = 'https://whispersystems-textsecure-attachments-staging.s3.amazonaws.com';
+    var messageReceiver;
+    window.getSocketStatus = function() {
+        if (messageReceiver) {
+            return messageReceiver.getStatus();
+        } else {
+            return -1;
+        }
+    };
+    window.getAccountManager = function() {
+        var USERNAME = storage.get('number_id');
+        var PASSWORD = storage.get('password');
+        var accountManager = new textsecure.AccountManager(
+            SERVER_URL, SERVER_PORTS, USERNAME, PASSWORD
+        );
+        accountManager.addEventListener('registration', function() {
+            if (!Whisper.Registration.everDone()) {
+                storage.put('safety-numbers-approval', false);
+            }
+            Whisper.Registration.markDone();
+        });
+        return accountManager;
+    };
+
+
 
 }());

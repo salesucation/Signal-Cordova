@@ -254,7 +254,13 @@
           <div class='number-container'>
               <input type='tel' class='number' placeholder="Phone Number" />
           </div>
-          <button class="register">Register</button>
+          <button class="register_sms" disabled>Register with SMS</button>
+          <button class="register_voice" disabled>Register with Voice</button>
+          <div class='verification-container'>
+              <input type='number' disabled class='verification' placeholder="Verification Code" />
+          </div>
+          <button class="complete" disabled>Complete Registration</button>
+          <div style="display:none" id="error">&nbsp;</div>
       </div>
   </script>
   <script type='text/x-tmpl-mustache' id='file-size-modal'>
@@ -497,14 +503,14 @@
     </head>
     <body class='signal index'>
         <script type="text/javascript" src="js/components.js"></script>
+        <script type="text/javascript" src="js/database.js"></script>
         <script type="text/javascript" src="js/expire.js"></script>
         <script type="text/javascript" src="js/models/conversations.js"></script>
         <script type="text/javascript" src="js/conversation_controller.js"></script>
         <script type="text/javascript" src="js/storage.js"></script>
         <script type="text/javascript" src="js/models/blockedNumbers.js"></script>
         <script type="text/javascript" src="js/models/messages.js"></script>
-        
-        <script type="text/javascript" src="js/database.js"></script>
+
         <script type="text/javascript" src="js/signal_protocol_store.js"></script>
         <script type="text/javascript" src="js/libtextsecure.js"></script>
 
