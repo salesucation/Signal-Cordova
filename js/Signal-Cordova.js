@@ -42,7 +42,7 @@
 
     window.addEventListener('onreload', render);
     textsecure.startWorker('js/libsignal-protocol-worker.js');
-    storage.onready(function(){
+    storage.onready(function() {
         render();
         console.log('extension launched');
     });
