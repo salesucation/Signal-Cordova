@@ -37,10 +37,11 @@
         },
 
         completeRegistration: function() {
+            var self = this;
             this.accountManager.registerSingleDevice(this.validateNumber(), this.validateCode()).then(function() {
                 ConversationController.updateInbox().then(function() {
                     try {
-                        this.remove();
+                        self.remove();
                         var $body = $('body',document).empty();
                         var view = new Whisper.InboxView({window: window});
                         view.$el.prependTo($body);
@@ -51,7 +52,7 @@
                         };
                         openConversation(getOpenConversation());
                     } catch (e) {
-                        logError(e);
+                        self.displayError(e);
                     }
                 });
             }).catch(this.displayError);
