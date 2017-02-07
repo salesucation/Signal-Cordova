@@ -41,7 +41,6 @@
 
 
     window.addEventListener('onreload', render);
-    
     textsecure.startWorker('js/libsignal-protocol-worker.js');
     storage.fetch();
     storage.onready(function() {
